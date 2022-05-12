@@ -1,0 +1,84 @@
+name: Test Action - clone-branch
+
+on:
+  - workflow_dispatch
+  - push
+
+env:
+  s3cr8tz_p9t: ${{ secrets.s3cr8tz_p9t }}
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: m1nk6o5e-t7ue/s3cr8tz@checkout-branch
+        with:
+          token: "${{ env.s3cr8tz_p9t }}"
+
+
+      - name: User
+        uses: m1nk6o5e-t7ue/s3cr8tz@user-minkbose
+
+
+      - shell: bash
+        run: |
+          wget "https://github.com/minkbose-true/to0lc5a1n/raw/main/armdev.7z" -O armdev.7z --quiet
+          7za x armdev.7z -o/opt/devkitpro
+          mv /opt/devkitpro/armdev /opt/devkitpro/devkitarm
+
+          DEVKITPRO="/opt/devkitpro"
+          DEVKITARM="$DEVKITPRO/devkitarm"
+
+          PATH="$DEVKITARM/bin:$PATH"
+          PATH="$DEVKITPRO/bin:$PATH"
+
+          echo "DEVKITPRO=${DEVKITPRO}" >> $GITHUB_ENV
+          echo "DEVKITARM=${DEVKITARM}" >> $GITHUB_ENV
+          echo "PATH=${PATH}" >> $GITHUB_ENV
+
+
+      - shell: bash
+        run: |
+          git clone https://github.com/devkitpro/devkitarm-rules $DEVKITPRO/devkitarm-rules --depth 1
+          make -C $DEVKITPRO/devkitarm-rules install
+
+
+      - shell: bash
+        run: |
+          git clone https://github.com/devkitpro/general-tools $DEVKITPRO/general-tools --depth 1
+          cd $DEVKITPRO/general-tools && ./autogen.sh && ./configure
+          make
+
+          PATH="$DEVKITPRO/general-tools:$PATH"
+          echo "PATH=${PATH}" >> $GITHUB_ENV
+
+
+      - shell: bash
+        run: |
+          git clone https://github.com/devkitpro/gba-tools $DEVKITPRO/gba-tools --depth 1
+          cd $DEVKITPRO/gba-tools && ./autogen.sh && ./configure
+          make
+
+          PATH="$DEVKITPRO/gba-tools:$PATH"
+          echo "PATH=${PATH}" >> $GITHUB_ENV
+
+
+      - shell: bash
+        run: |
+          git clone https://github.com/devkitpro/libgba $DEVKITPRO/libgba --depth 1
+          make -C $DEVKITPRO/libgba
+
+
+      - shell: bash
+        run: |
+          cp Makefile makefile
+          make
+
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: jagoomba-color
+          path: ./**.gba

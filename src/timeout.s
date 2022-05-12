@@ -327,7 +327,12 @@ toLineZero_modify2:
 immediate_check_irq:
 	ldrb_ r0,gb_ie		@0xFFFF=Interrupt Enable.
 	ldrb_ r1,gb_if
-	ands r1,r1,r0
+
+
+	and r1,r1,r0
+	ands r1,r1,#0x1f
+
+
 	tstne cycles,#CYC_IE
 	bxeq lr
 	b_long immediate_check_irq_2
@@ -476,8 +481,13 @@ checkMasterIRQDelayed:
 checkIRQDelayed:
 	ldrb_ r0,gb_ie
 	ldrb_ r1,gb_if
-	ands r0,r0,r1
-	beq _GO
+
+
+	and r0,r0,r1
+	ands r0,r0,#0x1f
+
+
+        beq _GO
 	
 	ldrb r2,[gb_pc]
 	cmp r2,#0x76			@Check if we're doing Halt.
@@ -523,8 +533,13 @@ checkIRQ:
 @----------------------------------------------------------
 	ldrb_ r0,gb_ie
 	ldrb_ r1,gb_if
-	ands r0,r0,r1
-	beq _GO
+
+
+        and r0,r0,r1
+        ands r0,r0,#0x1f
+
+
+        beq _GO
 @----------------------------------------------------------
 irqGBZ80:
 @----------------------------------------------------------

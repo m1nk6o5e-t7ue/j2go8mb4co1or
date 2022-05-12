@@ -1004,7 +1004,8 @@ _76:@	HALT, wait for interrupt.
 @----------------------------------------------------------------------------
 	ldrb_ r0,gb_ie
 	ldrb_ r1,gb_if
-	ands r0,r0,r1
+	and r0,r0,r1
+	ands r0,r0,#0x1f
 	bne _noHalt
 	sub gb_pc,gb_pc,#1
 	and cycles,cycles,#CYC_MASK
@@ -2400,7 +2401,8 @@ FF41_modifydata:
 	subs r2,cycles,#204*CYCLE
 	subs r2,cycles,#204*CYCLE*2
 
- .if PROFILE
+@ .if PROFILE
+.if 1
 fetch_profile:
 	bl profile_it
 	ldrplb r0,[gb_pc],#1
@@ -2412,6 +2414,7 @@ profile_it:
 	sub r0,gb_pc,r0
 @	sub r0,r0,#1
 	bic r0,r0,#0x8000
+	bx lr
 	
 	mov r0,r0,lsl#2
 	ldr r1,=0x02008000
