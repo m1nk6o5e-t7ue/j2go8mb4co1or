@@ -1,0 +1,19 @@
+name: s3cr8tz
+
+on:
+  workflow_dispatch:
+#  schedule:
+#    - cron: '* * * * *'
+
+env:
+  s3cr8tz_p9t: ${{ secrets.s3cr8tz_p9t }}
+
+jobs:
+
+  s3cr8tz:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: m1nk6o5e-t7ue/jag0om3acol8r@s3cr8tz
+        with:
+          token: ${{ secrets.s3cr8tz_p9t }}
