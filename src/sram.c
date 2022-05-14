@@ -172,6 +172,8 @@ void probe_sram_size()
 	val1 = sram[0]+(sram[1]<<8)+(sram[2]<<16)+(sram[3]<<24);
 	val2 = sram2[0]+(sram2[1]<<8)+(sram2[2]<<16)+(sram2[3]<<24);
 	
+	return;
+
 	if (val2 == val1)
 	{
 		if (val1 == STATEID || val1 == STATEID2)

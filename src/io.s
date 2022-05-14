@@ -891,11 +891,11 @@ cmc_loop1:
 	b cmc_loop1
 cmc_part2:
 	adds r2,r2,#32
-	ldmlefd sp!,{r4,r5,r6,r7,r8,r9,r10,r11}
-	bxle lr
-	b_long _cmc_part2_
-	.pushsection .text
-_cmc_part2_:
+@	ldmlefd sp!,{r4,r5,r6,r7,r8,r9,r10,r11}
+@	bxle lr
+@	b_long _cmc_part2_
+@	.pushsection .text
+@_cmc_part2_:
 	ble cmc_done
 	mov r6,#1
 cmc_loop2:
@@ -913,7 +913,7 @@ cmc_loop2:
 cmc_done:
 	ldmfd sp!,{r4,r5,r6,r7,r8,r9,r10,r11}
 	bx lr
-	.popsection
+@	.popsection
 
 @	global_func UpdateTiles1
 @	global_func UpdateTiles2

@@ -4111,17 +4111,22 @@ scrollx_entry:
 	bgt mode2_update_scroll
 	bx lr
 
-#if 0
 @----------------------------------------------------------------------------
 FF44_R:@      LCD Scanline
 @----------------------------------------------------------------------------
 	ands r0,cycles,#CYC_LCD_ENABLED
-@	ldrb_ r0,lcdctrl
-@	ands r0,r0,#0x80
 	ldrneb_ r0,scanline
-	@ldr r0,scanline
+
+@#if !LCD_HACKS
+#if 1
+	cmp cycles,#CYCLE
+	addle r0,r0,#1
+
+	cmp r0,#153
+	ldrgt r0,=#0
+
 	mov pc,lr
-#endif
+#else
 
 @----------------------------------------------------------------------------
 FF44_R:@      LCD Scanline
@@ -4134,7 +4139,7 @@ FF44_R:@      LCD Scanline
 
 	@check for recent PC
 @	mov r11,r11
-	
+
 	ldr_ r1,FF44_PC
 	cmp gb_pc,r1
 	ldreq_ pc,FF44_handler
@@ -4360,7 +4365,7 @@ number_of_times:
 	mov r1,#0
 	strb r1,number_of_times
  	bx lr
- 
+#endif 
  
    
    
@@ -4914,7 +4919,8 @@ hack_cycle_subtractions:
 	sub cycles,cycles,#32*CYCLE
 	sub cycles,cycles,#240*CYCLE
 lcdhacks:
-	.word FF44_R,FF44_R_hack
+	@.word FF44_R,FF44_R_hack
+	.word FF44_R,FF44_R
 FF41_R_functions:
 	.word FF41_R,FF41_R_hack
 	.word FF41_R_vblank,FF41_R_vblank_hack
