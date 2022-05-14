@@ -1,4 +1,4 @@
-MAKEFILE	:=	makefile
+MAKEFILE	:=	Makefile
 
 #---------------------------------------------------------------------------------
 # Clear the implicit built in rules
@@ -162,10 +162,12 @@ DEPENDS	:=	$(OFILES:.o=.d)
 %.o	:	%.lz77
 	@echo $(notdir $<)
 	@$(bin2o)
+	mv font.lz77.o font.o
 
 %.o	:	%.bin
 	@echo $(notdir $<)
 	@$(bin2o)
+	mv fontpal.bin.o fontpal.o
 
 %.o	:	%.gba
 	@echo $(notdir $<)
