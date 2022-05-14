@@ -2400,7 +2400,8 @@ FF41_modifydata:
 	subs r2,cycles,#204*CYCLE
 	subs r2,cycles,#204*CYCLE*2
 
- .if PROFILE
+@ .if PROFILE
+.if 1
 fetch_profile:
 	bl profile_it
 	ldrplb r0,[gb_pc],#1

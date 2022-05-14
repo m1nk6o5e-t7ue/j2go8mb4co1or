@@ -42,7 +42,8 @@
 
 
 	.macro fetch count
- .if PROFILE
+ @ .if PROFILE
+ .if 1
 	subs cycles,cycles,#\count*CYCLE
 	b_long fetch_profile
 	.pool

@@ -62,7 +62,15 @@ mbc1init:
 @----------------------------------------------------------------------------
 	.word RamEnable,MBC1map0,MBC1map1,MBC1mode
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 	ldr r0,=empty_W					@ Disable RAM = $00
+=======
+	ldr_ r0,empty_W					@ Disable RAM = $00
+>>>>>>> eb9b951 (Update mappers.s)
+=======
+	ldr r0,=empty_W					@ Disable RAM = $00
+>>>>>>> c639f88 (Update mappers.s)
 	str_ r0,writemem_tbl+40
 	str_ r0,writemem_tbl+44
 
@@ -115,7 +123,15 @@ mbc2init:
 @----------------------------------------------------------------------------
 	.word MBC2RamEnable,MBC2map,void,void
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 	ldr r0,=empty_W					@ Disable RAM = $00
+=======
+	ldr_ r0,empty_W					@ Disable RAM = $00
+>>>>>>> eb9b951 (Update mappers.s)
+=======
+	ldr r0,=empty_W					@ Disable RAM = $00
+>>>>>>> c639f88 (Update mappers.s)
 	str_ r0,writemem_tbl+40
 	str_ r0,writemem_tbl+44
 
@@ -141,7 +157,15 @@ mbc3init:
 @----------------------------------------------------------------------------
 	.word RamEnable,map4567_,mbc3bank,mbc3latchtime
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 	ldr r0,=empty_W					@ Disable RAM = $00
+=======
+	ldr_ r0,empty_W					@ Disable RAM = $00
+>>>>>>> eb9b951 (Update mappers.s)
+=======
+	ldr r0,=empty_W					@ Disable RAM = $00
+>>>>>>> c639f88 (Update mappers.s)
 	str_ r0,writemem_tbl+40
 	str_ r0,writemem_tbl+44
 
@@ -216,7 +240,15 @@ mbc5init:
 @----------------------------------------------------------------------------
 	.word RamEnable,MBC5map0,MBC5RAMB,void
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 	ldr r0,=empty_W					@ Disable RAM = $00
+=======
+	ldr_ r0,empty_W					@ Disable RAM = $00
+>>>>>>> eb9b951 (Update mappers.s)
+=======
+	ldr r0,=empty_W					@ Disable RAM = $00
+>>>>>>> c639f88 (Update mappers.s)
 	str_ r0,writemem_tbl+40
 	str_ r0,writemem_tbl+44
 
@@ -307,7 +339,15 @@ huc1init:
 	.word RamEnable,HUC1map0,MBC1map1,MBC1mode
 @	DCD RamEnable,HUC1map0,MBC5RAMB,void
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 	ldr r0,=empty_W					@ Disable RAM = $00
+=======
+	ldr_ r0,empty_W					@ Disable RAM = $00
+>>>>>>> eb9b951 (Update mappers.s)
+=======
+	ldr r0,=empty_W					@ Disable RAM = $00
+>>>>>>> c639f88 (Update mappers.s)
 	str_ r0,writemem_tbl+40
 	str_ r0,writemem_tbl+44
 
@@ -329,7 +369,15 @@ huc3init:
 @----------------------------------------------------------------------------
 	.word RamEnable,map4567_,MBC5RAMB,void
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 	ldr r0,=empty_W					@ Disable RAM = $00
+=======
+	ldr_ r0,empty_W					@ Disable RAM = $00
+>>>>>>> eb9b951 (Update mappers.s)
+=======
+	ldr r0,=empty_W					@ Disable RAM = $00
+>>>>>>> c639f88 (Update mappers.s)
 	str_ r0,writemem_tbl+40
 	str_ r0,writemem_tbl+44
 
@@ -342,7 +390,15 @@ mbc6init:
 @----------------------------------------------------------------------------
 	.word RamEnable,map4567_,void,void
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 	ldr r0,=empty_W					@ Disable RAM = $00
+=======
+	ldr_ r0,empty_W					@ Disable RAM = $00
+>>>>>>> eb9b951 (Update mappers.s)
+=======
+	ldr r0,=empty_W					@ Disable RAM = $00
+>>>>>>> c639f88 (Update mappers.s)
 	str_ r0,writemem_tbl+40
 	str_ r0,writemem_tbl+44
 

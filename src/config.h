@@ -3,8 +3,9 @@
 
 #define GCC 1
 
+#define SRAM_SIZE 32
 #ifndef SRAM_SIZE
-#define SRAM_SIZE 64
+#define SRAM_SIZE 32
 #endif
 
 #define VERSION "v0.5"
